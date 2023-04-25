@@ -1,0 +1,44 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="springboot-rest-secured-web" version="3.0">
+
+    <session-config>
+        <cookie-config>
+            <http-only>true</http-only>
+            <secure>true</secure>
+        </cookie-config>
+    </session-config>
+
+
+        <security-constraint>
+            <web-resource-collection>
+                <web-resource-name>API Application</web-resource-name>
+                <url-pattern>/*</url-pattern>
+            </web-resource-collection>
+            <auth-constraint>
+                <role-name>UserRole</role-name>
+                <role-name>AdminRole</role-name>
+            </auth-constraint>
+        </security-constraint>
+
+
+    <security-constraint>
+        <web-resource-collection>
+            <url-pattern>/rs/monitor</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+
+
+<security-role>
+    <role-name>UserRole</role-name>
+    <role-name>AdminRole</role-name>
+</security-role>
+
+<!-- ADD FOLLOWING LOGIN CONFIG TO ENABLE AUTHENTICATION BEFORE SPRINGBOOT AUTHORIZATION -->
+<login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>springboot-application-sd</realm-name>
+</login-config>
+
+</web-app>
